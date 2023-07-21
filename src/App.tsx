@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { ISpace, makeTheme, useSpace } from "@flatfile/react";
 import { config } from "./config";
 import { listener } from "./listener";
@@ -6,8 +6,8 @@ import { listener } from "./listener";
 const spaceProps: ISpace = {
   name: "Embedded Space",
   // to test locally add your local vars here
-  publishableKey: "pk_FKfafGxzQRg2tuwpAzz7oO3xOCHapTJo",
-  environmentId: "us_env_fTVuSWQg",
+  publishableKey: "",
+  environmentId: "",
   workbook: config,
   themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
   sidebarConfig: {
@@ -17,8 +17,11 @@ const spaceProps: ISpace = {
   listener: listener,
 };
 
-export default function App() {
-  const [showSpace, setShowSpace] = useState(false);
+const Space = ({
+  setShowSpace,
+}: {
+  setShowSpace: Dispatch<SetStateAction<boolean>>;
+}) => {
   const space = useSpace({
     ...spaceProps,
     closeSpace: {
@@ -26,6 +29,11 @@ export default function App() {
       onClose: () => setShowSpace(false),
     },
   });
+  return space;
+};
+
+export default function App() {
+  const [showSpace, setShowSpace] = useState(false);
 
   return (
     <div style={{ padding: "16px" }}>
@@ -36,7 +44,7 @@ export default function App() {
       >
         {showSpace === true ? "Close" : "Open"} space
       </button>
-      {showSpace && space}
+      {showSpace && <Space setShowSpace={setShowSpace} />}
     </div>
   );
 }
