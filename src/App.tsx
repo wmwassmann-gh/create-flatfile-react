@@ -7,6 +7,7 @@ const spaceProps: ISpace = {
   name: "Embedded Space",
   // to test locally add your local vars here
   publishableKey: "pk_FKfafGxzQRg2tuwpAzz7oO3xOCHapTJo",
+  environmentId: "us_env_fTVuSWQg",
   workbook: config,
   themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
   sidebarConfig: {
