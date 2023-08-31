@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { ISpace, makeTheme, useSpace } from "@flatfile/react";
+import React, { useState } from "react";
 import { config } from "./config";
 import { listener } from "./listener";
 

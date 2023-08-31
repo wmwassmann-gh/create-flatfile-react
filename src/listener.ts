@@ -7,20 +7,17 @@ async function submit(jobId: string) {
       info: "I'm starting the job - inside client",
       progress: 33,
     });
-  } catch (e) {
-    throw new Error(`Error acknowledging jobId: ${jobId} ${e}`);
-  }
 
-  // hit your api or webhook here
-  await new Promise((res) => setTimeout(res, 2000));
+    //do your work here
+    await new Promise((res) => setTimeout(res, 2000));
 
-  try {
     await api.jobs.complete(jobId, {
-      info: "Job's work is done",
-      outcome: { next: { type: "wait" } },
+      outcome: { message: "Job complete.", next: { type: "wait" } },
     });
   } catch (e) {
-    throw new Error(`Error completing jobId: ${jobId} ${e}`);
+    await api.jobs.fail(jobId, {
+      outcome: { message: "Error: ${e}" },
+    });
   }
 }
 
@@ -59,6 +56,10 @@ async function joinFields(jobId: string, sheetId: string) {
  * Example Listener
  */
 export const listener = FlatfileListener.create((client) => {
+  client.on("**", (event) => {
+    console.log(`Received event: ${event.topic}`);
+  });
+
   client.on(
     "job:ready",
     // @ts-ignore
@@ -74,8 +75,11 @@ export const listener = FlatfileListener.create((client) => {
     // @ts-ignore
     { payload: { operation: "contacts:submit" } },
     async (event: any) => {
-      const { context } = event;
-      return submit(context.jobId);
+      const {
+        context: { jobId },
+      } = event;
+
+      return submit(jobId);
     }
   );
 });
