@@ -1,20 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, makeTheme, useSpace } from "@flatfile/react";
-import { config } from "./config";
-import { listener } from "./listener";
+import { ISpace, useSpace } from "@flatfile/react";
 
 const spaceProps: ISpace = {
   name: "Embedded Space",
   // to test locally add your local vars here
-  publishableKey: "",
-  environmentId: "",
-  workbook: config,
-  themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
-  sidebarConfig: {
-    showDataChecklist: false,
-    showSidebar: false,
-  },
-  listener: listener,
+  publishableKey: "pk_3d34f9821645462ca869cc69a9258ef5",
+  environmentId: "us_env_Eqdlko0r",
 };
 
 const Space = ({
@@ -36,13 +27,18 @@ export default function App() {
   const [showSpace, setShowSpace] = useState(false);
 
   return (
-    <div style={{ padding: "16px" }}>
+    <div className="content">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
       <button
+        className="contrast"
         onClick={() => {
           setShowSpace(!showSpace);
         }}
       >
-        {showSpace === true ? "Close" : "Open"} space
+        {showSpace === true ? "Close" : "Open and create new"} Space
       </button>
       {showSpace && <Space setShowSpace={setShowSpace} />}
     </div>
