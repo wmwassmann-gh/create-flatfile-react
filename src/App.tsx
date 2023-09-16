@@ -41,24 +41,22 @@ export default function App() {
   const [showSpace, setShowSpace] = useState(false);
 
   return (
-    <div className="container">
-      <div className="content">
-        <h2>
-          <code>&lt;Flatfile /&gt;</code>
-        </h2>
-        <p>Embed Flatfile in just a few lines of code.</p>
-        {/*Button to trigger the modal */}
-        <div>
-          <button
-            className="contrast"
-            onClick={() => {
-              setShowSpace(!showSpace);
-            }}
-          >
-            {showSpace === true ? "Close" : "Open and create new"} Space
-          </button>
-          {showSpace && <Space setShowSpace={setShowSpace} />}
-        </div>
+    <div className="content">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      {/*Button to trigger the modal */}
+      <div>
+        <button
+          className="contrast"
+          onClick={() => {
+            setShowSpace(!showSpace);
+          }}
+        >
+          {showSpace === true ? "Close" : "Open and create new"} Space
+        </button>
+        {showSpace && <Space setShowSpace={setShowSpace} />}
       </div>
     </div>
   );
