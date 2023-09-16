@@ -1,11 +1,12 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { ISpace, useSpace } from "@flatfile/react";
+import { workbook } from "./workbook";
+import { listener } from "./listeners/simple";
 
 const spaceProps: ISpace = {
   name: "Embedded Space",
-  // to test locally add your local vars here
-  publishableKey: "pk_3d34f9821645462ca869cc69a9258ef5",
-  environmentId: "us_env_Eqdlko0r",
+  publishableKey: "pk_3dd6ee8679994ee5b421f17b91524fee",
+  environmentId: "us_env_QzZ1nMYH",
 };
 
 const Space = ({
@@ -15,6 +16,19 @@ const Space = ({
 }) => {
   const space = useSpace({
     ...spaceProps,
+    workbook,
+    listener,
+    sidebarConfig: {
+      showSidebar: false,
+    },
+    themeConfig: {
+      root: {
+        primaryColor: "red",
+      },
+      sidebar: {
+        logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+      },
+    },
     closeSpace: {
       operation: "contacts:submit",
       onClose: () => setShowSpace(false),
@@ -32,15 +46,18 @@ export default function App() {
         <code>&lt;Flatfile /&gt;</code>
       </h2>
       <p>Embed Flatfile in just a few lines of code.</p>
-      <button
-        className="contrast"
-        onClick={() => {
-          setShowSpace(!showSpace);
-        }}
-      >
-        {showSpace === true ? "Close" : "Open and create new"} Space
-      </button>
-      {showSpace && <Space setShowSpace={setShowSpace} />}
+      {/*Button to trigger the modal */}
+      <div>
+        <button
+          className="contrast"
+          onClick={() => {
+            setShowSpace(!showSpace);
+          }}
+        >
+          {showSpace === true ? "Close" : "Open and create new"} Space
+        </button>
+        {showSpace && <Space setShowSpace={setShowSpace} />}
+      </div>
     </div>
   );
 }

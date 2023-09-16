@@ -34,7 +34,7 @@ body {
 /* End of styles for home page */
 
 :root {
-  --ff-primary-color: red !important;
+  --ff-primary-color: #4c48ef !important;
   --ff-secondary-color: #616a7d !important;
   --ff-text-color: #090b2b !important;
   --ff-dialog-border-radius: 4px !important;
@@ -54,6 +54,10 @@ body {
 /* #flatfile_iframe {
 } */
 
+.flatfile-close-button {
+  display: none !important;
+}
+
 /* Begin style overrides for when Flatfile is displayed as a modal */
 
 /* This class gets appended to the flatfile_iframe-wrapper div */
@@ -64,16 +68,18 @@ body {
 }
 
 .flatfile_iframe-wrapper.flatfile_displayAsModal {
-  background: var(--ff-bg-fade);
+  background: var(--ff-bg-fade) !important;
 }
 
 /* The close button in top right to close modal */
-/* .flatfile_displayAsModal .flatfile_close-button {
-} */
+.flatfile_displayAsModal .flatfile-close-button {
+  display: block !important;
+  margin: 20px !important;
+}
 
 /* The icon for the close button in top right to close modal */
-.flatfile_displayAsModal .flatfile_close-button svg {
-  fill: var(--ff-secondary-color);
+.flatfile_displayAsModal .flatfile-close-button svg {
+  fill: var(--ff-secondary-color) !important;
 }
 
 /* The actual iframe that contains Flatfile */
@@ -85,8 +91,8 @@ body {
 
 /* The outer container of the modal that opens when you cancel out of Flatfile */
 .flatfile_outer-shell {
-  background-color: var(--ff-bg-fade);
-  border-radius: var(--ff-border-radius);
+  background-color: var(--ff-bg-fade) !important;
+  border-radius: var(--ff-border-radius) !important;
 }
 
 /* The inner container of the modal that opens when you cancel out of Flatfile */
@@ -95,7 +101,7 @@ body {
 
 /* The white box inside the modal that opens when you cancel out of Flatfile */
 .flatfile_modal {
-  border-radius: var(--ff-dialog-border-radius);
+  border-radius: var(--ff-dialog-border-radius) !important;
 }
 
 /* The container for the buttons you see in the close modal */
@@ -108,24 +114,24 @@ body {
 
 /* The "yes, cancel" button you see in the close modal */
 .flatfile_primary {
-  border: 1px solid var(--ff-primary-color);
-  background-color: var(--ff-primary-color);
+  border: 1px solid var(--ff-primary-color) !important;
+  background-color: var(--ff-primary-color) !important;
   color: #fff;
 }
 
 /* The "no, stay" button you see in the close modal */
 .flatfile_secondary {
-  color: var(--ff-secondary-color);
+  color: var(--ff-secondary-color) !important;
 }
 
 /* The heading text you see in the close modal */
 .flatfile_modal-heading {
-  color: var(--ff-text-color);
+  color: var(--ff-text-color) !important;
 }
 
 /* The description text you see in the close modal */
 .flatfile_modal-text {
-  color: var(--ff-secondary-color);
+  color: var(--ff-secondary-color) !important;
 }
 
 /* End style overrides for when you cancel out of the Flatfile modal */
