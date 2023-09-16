@@ -54,6 +54,10 @@ body {
 /* #flatfile_iframe {
 } */
 
+.flatfile-close-button {
+  display: none !important;
+}
+
 /* Begin style overrides for when Flatfile is displayed as a modal */
 
 /* This class gets appended to the flatfile_iframe-wrapper div */
@@ -69,6 +73,7 @@ body {
 
 /* The close button in top right to close modal */
 .flatfile_displayAsModal .flatfile-close-button {
+  display: block !important;
   margin: 20px !important;
 }
 
