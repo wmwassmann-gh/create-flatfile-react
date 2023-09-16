@@ -68,12 +68,12 @@ body {
 }
 
 /* The close button in top right to close modal */
-.flatfile_displayAsModal .flatfile_close-button {
+.flatfile_displayAsModal .flatfile-close-button {
   margin: 20px !important;
 }
 
 /* The icon for the close button in top right to close modal */
-.flatfile_displayAsModal .flatfile_close-button svg {
+.flatfile_displayAsModal .flatfile-close-button svg {
   fill: var(--ff-secondary-color) !important;
 }
 
