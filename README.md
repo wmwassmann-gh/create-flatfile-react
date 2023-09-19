@@ -10,9 +10,9 @@ Create a new Space each time Flatfile is opened. This suits situations where a c
 4. Head to your `localhost` url output in the terminal (e.g. `http://localhost:3000`) and click the "Create new Space" button. You'll see a new Space get created. It contains a Workbook and a simple data hook validation.
 5. Upload a file (an example file `getting-started.csv` can be found in of this project) or manually enter some data.
 
-Follow the 7-step guide to see how this Example was built [here](flatfile.com/docs/guides/use-cases/embedding/javascript)
+Follow the 7-step guide to see how this Example was built [here](https://flatfile.com/docs/guides/use-cases/embedding/react/guide)
 
-For more instructions, follow the guide [here](flatfile.com/docs/guides/use-cases/embedding/javascript)
+For more instructions, follow the guide [here](https://flatfile.com/docs/guides/use-cases/embedding/react/guide)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
