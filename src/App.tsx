@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, useSpace } from "@flatfile/react";
-import { workbook } from "./workbook";
-import { listener } from "./listeners/simple";
+import { ISpace, makeTheme, useSpace } from "@flatfile/react";
+import { config } from "./config";
+import { listener } from "./listener";
 
 const spaceProps: ISpace = {
   name: "Embedded Space",
