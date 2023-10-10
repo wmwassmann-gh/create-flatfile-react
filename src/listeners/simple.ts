@@ -19,7 +19,7 @@ export const listener = FlatfileListener.create((listener) => {
     })
   );
 
-  listener.filter({ job: "sheet:submitActionFg" }, (configure) => {
+  listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
     configure.on("job:ready", async ({ context: { jobId } }) => {
       try {
         await api.jobs.ack(jobId, {
