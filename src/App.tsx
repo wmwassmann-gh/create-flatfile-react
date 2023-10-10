@@ -30,7 +30,7 @@ const Space = ({
       },
     },
     closeSpace: {
-      operation: "contacts:submit",
+      operation: "submitActionFg",
       onClose: () => setShowSpace(false),
     },
   });

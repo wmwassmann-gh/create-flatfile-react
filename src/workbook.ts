@@ -27,15 +27,16 @@ export const workbook: Pick<
           label: "Email",
         },
       ],
+      actions: [
+        {
+          operation: "submitActionFg",
+          mode: "foreground",
+          label: "Submit foreground",
+          description: "Submit data to webhook.site",
+          primary: true,
+        },
+      ],
     },
   ],
-  actions: [
-    {
-      operation: "submitActionFg",
-      mode: "foreground",
-      label: "Submit foreground",
-      description: "Submit data to webhook.site",
-      primary: true,
-    },
-  ],
+  actions: [],
 };

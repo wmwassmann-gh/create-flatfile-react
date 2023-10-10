@@ -19,7 +19,7 @@ export const listener = FlatfileListener.create((listener) => {
     })
   );
 
-  listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+  listener.filter({ job: "sheet:submitActionFg" }, (configure) => {
     configure.on("job:ready", async ({ context: { jobId } }) => {
       try {
         await api.jobs.ack(jobId, {
@@ -32,7 +32,11 @@ export const listener = FlatfileListener.create((listener) => {
 
         await api.jobs.complete(jobId, {
           outcome: {
-            message: "This job is now complete.",
+            acknowledge: true,
+            message: "This is now complete.",
+            next: {
+              type: "wait",
+            },
           },
         });
       } catch (error: any) {
