@@ -5,8 +5,8 @@ import { listener } from "./listeners/simple";
 
 const spaceProps: ISpace = {
   name: "Embedded Space",
-  publishableKey: "pk_3dd6ee8679994ee5b421f17b91524fee",
-  environmentId: "us_env_QzZ1nMYH",
+  publishableKey: "YOUR_PRIVATE_KEY",
+  environmentId: "YOUR_ENVIRONMENT_ID",
 };
 
 const Space = ({
