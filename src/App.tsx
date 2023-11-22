@@ -1,21 +1,14 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, useSpace } from "@flatfile/react";
+import { useState } from "react";
+import { ISpace, useSpaceTrigger } from "@flatfile/react";
 import { workbook } from "./workbook";
 import { listener } from "./listeners/simple";
 
-const spaceProps: ISpace = {
-  name: "Embedded Space",
-  publishableKey: "YOUR_PRIVATE_KEY",
-  environmentId: "YOUR_ENVIRONMENT_ID",
-};
 
-const Space = ({
-  setShowSpace,
-}: {
-  setShowSpace: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const space = useSpace({
-    ...spaceProps,
+export default function App() {
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    publishableKey: "YOUR_PRIVATE_KEY",
+    environmentId: "YOUR_ENVIRONMENT_ID",
     workbook,
     listener,
     sidebarConfig: {
@@ -33,12 +26,15 @@ const Space = ({
       operation: "submitActionFg",
       onClose: () => setShowSpace(false),
     },
-  });
-  return space;
-};
+  };
 
-export default function App() {
   const [showSpace, setShowSpace] = useState(false);
+  const { Space, createOrUseSpace } = useSpaceTrigger(spaceProps);
+
+  const onOpenSpace = async () => {
+    setShowSpace(!showSpace);
+    await createOrUseSpace();
+  }
 
   return (
     <div className="content">
@@ -50,13 +46,11 @@ export default function App() {
       <div>
         <button
           className="contrast"
-          onClick={() => {
-            setShowSpace(!showSpace);
-          }}
+          onClick={onOpenSpace}
         >
           {showSpace === true ? "Close" : "Open and create new"} Space
         </button>
-        {showSpace && <Space setShowSpace={setShowSpace} />}
+        {showSpace && <Space />}
       </div>
     </div>
   );
