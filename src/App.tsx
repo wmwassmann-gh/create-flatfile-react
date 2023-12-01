@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ISpace, useSpaceTrigger } from "@flatfile/react";
+import { ISpace, initializeFlatfile } from "@flatfile/react";
 import { workbook } from "./workbook";
 import { listener } from "./listeners/simple";
 
@@ -7,8 +7,8 @@ import { listener } from "./listeners/simple";
 export default function App() {
   const spaceProps: ISpace = {
     name: "Embedded Space",
-    publishableKey: "YOUR_PRIVATE_KEY",
-    environmentId: "YOUR_ENVIRONMENT_ID",
+    publishableKey: "pk_pNXu3NvhxVbVCYvbArTiKjAWgVMtdRJA",
+    environmentId: "us_env_3f4Kgm7f",
     workbook,
     listener,
     sidebarConfig: {
@@ -29,11 +29,11 @@ export default function App() {
   };
 
   const [showSpace, setShowSpace] = useState(false);
-  const { Space, createOrUseSpace } = useSpaceTrigger(spaceProps);
+  const { Space, OpenEmbed } = initializeFlatfile(spaceProps);
 
   const onOpenSpace = async () => {
     setShowSpace(!showSpace);
-    await createOrUseSpace();
+    await OpenEmbed();
   }
 
   return (
