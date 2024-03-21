@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { ISpace, initializeFlatfile } from "@flatfile/react";
-import { workbook } from "./workbook";
+import { useState } from "react";
 import { listener } from "./listeners/simple";
-
+import { workbook } from "./workbook";
 
 export default function App() {
   const spaceProps: ISpace = {
@@ -34,7 +33,7 @@ export default function App() {
   const onOpenSpace = async () => {
     setShowSpace(!showSpace);
     await OpenEmbed();
-  }
+  };
 
   return (
     <div className="content">
@@ -44,10 +43,7 @@ export default function App() {
       <p>Embed Flatfile in just a few lines of code.</p>
       {/*Button to trigger the modal */}
       <div>
-        <button
-          className="contrast"
-          onClick={onOpenSpace}
-        >
+        <button className="contrast" onClick={onOpenSpace}>
           {showSpace === true ? "Close" : "Open and create new"} Space
         </button>
         {showSpace && <Space />}

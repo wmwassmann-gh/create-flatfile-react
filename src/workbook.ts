@@ -1,9 +1,6 @@
 import { Flatfile } from "@flatfile/api";
 
-export const workbook: Pick<
-  Flatfile.CreateWorkbookConfig,
-  "name" | "labels" | "sheets" | "actions"
-> = {
+export const workbook: Flatfile.CreateWorkbookConfig = {
   name: "All Data",
   labels: ["pinned"],
   sheets: [
