@@ -6,7 +6,7 @@ import { workbook } from "./workbook";
 export default function App() {
   const spaceProps: ISpace = {
     name: "Embedded Space",
-    publishableKey: "YOUR_PRIVATE_KEY",
+    publishableKey: "YOUR_PUBPLISHABLE_KEY",
     environmentId: "YOUR_ENVIRONMENT_ID",
     workbook,
     listener,
