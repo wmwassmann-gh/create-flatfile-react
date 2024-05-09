@@ -5,31 +5,165 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #090b2b;
-  color: #fff;
+  background: #fff;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
 }
 
 #root {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  flex-direction: column;
+}
+
+.success {
+  color: black; /* White text color */
+  padding: 10px; /* Some padding */
+  margin: 20px 0; /* Some space above and below */
+  text-align: center; /* Centered text */
+  box-shadow: rgb(0, 0, 0) 8px 8px;
+  border: 2px solid black;
+}
+
+.centered-sub-navigation {
+  text-align: center;
+}
+
+nav {
+  white-space: nowrap;
+  display: flex;
+  padding: 0 3rem;
+  border-bottom: 1px solid rgb(232, 237, 244);
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  margin-left: -0.75rem;
+  overflow: hidden;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav li a {
+  align-items: center;
+  color: #999;
+  display: flex;
+  font-weight: 600;
+  transition: color 0.25s linear 0s;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.875rem 0.75rem;
+  text-decoration: none;
+  position: relative;
+}
+
+nav li a:hover {
+  color: rgba(9, 11, 43, 0.8);
+}
+nav li a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: black;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transition: 0.25s ease;
+}
+
+nav li a.active {
+  color: black;
+}
+nav li a.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: black;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+pre.inline {
+  display: inline-block;
+  background: rgb(239, 239, 239);
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin: 0;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 92rem;
+  padding-left: 3rem;
+  padding: 0px;
+  background-color: rgb(255, 255, 255);
+}
+
+.top-menu {
+  border-bottom: 1px solid rgb(232, 237, 244);
+  padding: 1rem 3rem;
+}
+.border-space {
+  border-bottom: 1px solid rgb(232, 237, 244);
+  padding: 1rem 0;
+}
+.top-menu img {
+  height: 1.75rem;
 }
 
 .content {
   /* Adjust the width and height as needed */
-  width: 800px;
-  height: 200px;
-  padding: 0 20px 0 50px;
+  width: 1000px;
+  padding: 25px;
 }
 
 .contrast {
   padding: 10px;
-  margin: 10px 5px 0 0;
+  margin-right: 5px;
   border-radius: 4px;
   border: 0;
   font-weight: 600;
   cursor: pointer;
+}
+
+.flatfile-button {
+  background: rgb(59, 47, 201);
+  color: white;
+  border-radius: 0;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 30px 10px 15px;
+  position: relative;
+  transition: 0.25s ease;
+}
+.flatfile-button .button-arrow {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 25px;
+  width: 5px;
+  transition: 0.25s ease;
+}
+.flatfile-button:hover {
+  background: rgba(59, 47, 201, 0.9);
+}
+.flatfile-button:hover .button-arrow {
+  transform: translateY(-50%) translateX(3px);
 }
 /* End of styles for home page */
 
@@ -132,6 +266,54 @@ body {
 /* The description text you see in the close modal */
 .flatfile_modal-text {
   color: var(--ff-secondary-color) !important;
+}
+
+.main {
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.main .space-contents {
+  width: 100% !important;
+}
+
+.description {
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  font-size: 0.85rem;
+  max-width: var(--max-width);
+  width: 100%;
+  z-index: 2;
+  font-family: var(--font-mono);
+}
+
+.description a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.description button {
+  position: relative;
+  margin: 0;
+  padding: 1rem;
+  background-color: rgba(var(--callout-rgb), 0.5);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.no-radius-iframe {
+  border-radius: 0!important;
+}
+
+a {
+  color: black;
+  font-weight: 600;
 }
 
 /* End style overrides for when you cancel out of the Flatfile modal */
