@@ -10,11 +10,13 @@ import {
   Sheet,
   FlatfileProvider,
 } from "@flatfile/react";
+//import api from "@flatfile/api";
 import { useState } from "react";
 import { recordHook } from "@flatfile/plugin-record-hook";
 import { sheet } from "./configs/sheet";
 import { workbook } from "./configs/workbook";
 import { document } from "./configs/document";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 import Button from "./utils/Button";
 
 export const SpaceApp = ({ publishableKey }: { publishableKey: string }) => (
@@ -48,6 +50,15 @@ const SpaceConfig = () => {
       });
     });
   });
+
+
+    useListener((listener) => {
+        listener.namespace(["space:us_sp_s6gssQ8l"], (listener: FlatfileListener) => {
+            listener.on("**", (event: FlatfileEvent) => {
+                console.log(`Received event: ${event.topic} THIS ONE`);
+            });
+        })      
+    });
 
   useListener((client) => {
     client.use(

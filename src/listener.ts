@@ -1,17 +1,23 @@
-import api, { Flatfile } from "@flatfile/api";
-import type { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
-import { bulkRecordHook } from "@flatfile/plugin-record-hook";
-import { responseRejectionHandler } from "@flatfile/util-response-rejection";
-import axios from "axios";
+import api from "@flatfile/api";
+import type { FlatfileListener } from "@flatfile/listener";
+
 
 
 
 export default function flatfileEventListener(listener: FlatfileListener) {
+
+    listener.on("**", (event) => {
+        console.log("Hardy Blargy", {
+            topic: event.topic,
+            payload: event.payload,
+        });
+    });
     listener.on(
         "job:ready",
         { job: "space:configure" },
         async ({ context: { spaceId, environmentId, jobId } }) => {
             try {
+                console.log("Hello");
                 await api.jobs.ack(jobId, {
                     info: "Getting Started",
                     progress: 10,
