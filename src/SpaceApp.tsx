@@ -73,19 +73,17 @@ const SpaceConfig = () => {
     );
   }, []);
 
-
-  useListener((client) => {
-      client.use(
-          recordHook("sheet", (record) => {
-              const firstName = record.get("firstName");
-              const subscriberStatus = record.get("subscriber");
-              if (!subscriberStatus || subscriberStatus === false) {
-                  console.log(record.firstName)
-
-              }
-          });
-      );
-  }, []);
+  //useListener((client) => {
+  //    client.use(
+  //        recordHook("sheet", (record) => {
+  //            const firstName = record.get("firstName");
+  //            const subscriberStatus = record.get("subscriber");
+  //            if (!subscriberStatus || subscriberStatus === false) {
+  //                console.log(record.firstName)
+  //            }
+  //        });
+  //    );
+  //}, []);
 
   usePlugin(
     recordHook("sheet", (record, event) => {
