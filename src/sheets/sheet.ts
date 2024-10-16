@@ -15,9 +15,9 @@ export const sheet: Flatfile.SheetConfig = {
       label: "Last Name",
     },
     {
-      key: "color",
-      type: "string",
-      label: "Color",
+      key: "subscriber",
+      type: "boolean",
+      label: "Subscriber",
     },
     {
       key: "email",

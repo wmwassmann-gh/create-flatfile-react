@@ -14,7 +14,7 @@ import {
 import { useState } from "react";
 import { recordHook } from "@flatfile/plugin-record-hook";
 import { sheet } from "./sheets/sheet";
-import { workbook } from "./sheets/workbook";
+import { workbook } from "./sheets/subs/subWorkbook";
 import { document } from "./sheets/document";
 import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 import Button from "./utils/Button";
@@ -71,6 +71,20 @@ const SpaceConfig = () => {
         return record;
       })
     );
+  }, []);
+
+
+  useListener((client) => {
+      client.use(
+          recordHook("sheet", (record) => {
+              const firstName = record.get("firstName");
+              const subscriberStatus = record.get("subscriber");
+              if (!subscriberStatus || subscriberStatus === false) {
+                  console.log(record.firstName)
+
+              }
+          });
+      );
   }, []);
 
   usePlugin(
@@ -195,13 +209,9 @@ const SpaceConfig = () => {
           <Sheet
             config={{
               ...sheet,
-              slug: "sheet3",
-              name: "Sheet 3",
-            }}
-            onRecordHook={(record) => {
-              record.set("email", "SHEET 3 RECORDHOOK");
-              return record;
-            }}
+              slug: "subscribers",
+              name: "Subscribers - Workbook",
+            }}           
           />
         </Workbook>
       </Space>
