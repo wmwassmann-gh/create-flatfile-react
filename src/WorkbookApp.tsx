@@ -1,5 +1,5 @@
 import { FlatfileProvider, useFlatfile, Workbook } from "@flatfile/react";
-import { workbook } from "./configs/workbook";
+import { workbook } from "./sheets/workbook";
 import Button from "./utils/Button";
 
 export const WorkbookApp = ({ publishableKey }: { publishableKey: string }) => {

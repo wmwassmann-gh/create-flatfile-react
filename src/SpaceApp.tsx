@@ -13,9 +13,9 @@ import {
 //import api from "@flatfile/api";
 import { useState } from "react";
 import { recordHook } from "@flatfile/plugin-record-hook";
-import { sheet } from "./configs/sheet";
-import { workbook } from "./configs/workbook";
-import { document } from "./configs/document";
+import { sheet } from "./sheets/sheet";
+import { workbook } from "./sheets/workbook";
+import { document } from "./sheets/document";
 import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 import Button from "./utils/Button";
 
@@ -28,9 +28,10 @@ export const SpaceApp = ({ publishableKey }: { publishableKey: string }) => (
   </FlatfileProvider>
 );
 
+
 const SpaceConfig = () => {
   const { open, openPortal, closePortal } = useFlatfile();
-  const [color, setColor] = useState("Red");
+  const [color, setColor] = useState("Blue");
   const [records, setRecords] = useState([]);
 
   const toggleButton = () => {
@@ -48,9 +49,9 @@ const SpaceConfig = () => {
         topic: event.topic,
         payload: event.payload,
       });
+      console.log("Helloasdasdasdasd World")
     });
   });
-
 
     useListener((listener) => {
         listener.namespace(["space:us_sp_s6gssQ8l"], (listener: FlatfileListener) => {
@@ -60,12 +61,12 @@ const SpaceConfig = () => {
         })      
     });
 
+
   useListener((client) => {
     client.use(
       recordHook("sheet2", (record) => {
         const firstName = record.get("firstName");
         console.log({ firstName });
-
         record.set("lastName", "Doe");
         return record;
       })
@@ -75,7 +76,7 @@ const SpaceConfig = () => {
   usePlugin(
     recordHook("sheet", (record, event) => {
       console.log("recordHook", { event });
-      record.set("color", color);
+  
       return record;
     }),
     [color]
@@ -95,6 +96,11 @@ const SpaceConfig = () => {
       closePortal();
     }
   );
+
+  const COLOR_PRIMARY_100 = "Red";
+  const tcolor = "green";
+
+
 
   return (
     <div className="content">
@@ -142,10 +148,24 @@ const SpaceConfig = () => {
       <Space
         config={{
           name: "Alex's Space",
-          metadata: {
+          metadata: {             
             sidebarConfig: {
-              showSidebar: true,
-            },
+              showSidebar: true,          
+            }, 
+            theme: {
+                root: {
+                    primaryColor: COLOR_PRIMARY_100,
+                    buttons:{
+                        textColor: tcolor,
+
+                    },
+                    table: {
+                        footerTextColor: "Blue"
+                    }
+                },
+     
+            }
+                            
           },
         }}
       >

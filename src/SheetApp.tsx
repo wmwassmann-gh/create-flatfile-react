@@ -4,7 +4,7 @@ import {
   useEvent,
   useFlatfile,
 } from "@flatfile/react";
-import { sheet } from "./configs/sheet";
+import { sheet } from "./sheets/sheet";
 import Button from "./utils/Button";
 
 export const SheetApp = ({ publishableKey }: { publishableKey: string }) => {
