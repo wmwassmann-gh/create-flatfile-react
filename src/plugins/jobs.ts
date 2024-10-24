@@ -26,7 +26,28 @@ const sortRecords = async (event: FlatfileEvent, to: string) => {
         const destinationSheet = sheets.find((sheet) => sheet.config?.slug === to);
         const { records } = await event.data;
 
+
+        if (!records) {
+            throw new Error("No records selected to move.");
+        }
+    
+        if (!destinationSheet?.id) {
+            throw new Error(`Destination sheet was not found by slug "${to}.`);
+        }
+    
+        await api.jobs.ack(jobId, { info: `Transfering ${records.length} records over to Subscribers`})
+
+        
      
     }
 
+}
+
+// Study up on insertRecords concepts 
+
+
+export function moveRecords(listener: FlatfileListener) {
+    listener.on("job:ready", { job: "sheet:sort-subs"}, async (event) => {
+        await sortRecords(event, "sheets/subs/sub")
+    });
 }
