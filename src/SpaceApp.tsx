@@ -152,11 +152,11 @@ const SpaceConfig = () => {
                   <Sheet
                       config={{
                           ...sheet,
-                          slug: "sheet3",
-                          name: "Sheet 3",
+                          slug: "Beep Beep, I'm a Sheet",
+                          name: "Sheet ",
                       }}
                       onRecordHook={(record) => {
-                          record.set("email", "SHEET 3 RECORDHOOK");
+                          record.set("email", "Beep Beep, I'm a Sheet RECORDHOOK");
                           return record;
                       }}
                   />
