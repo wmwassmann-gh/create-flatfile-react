@@ -1,5 +1,5 @@
 import { Flatfile } from "@flatfile/api";
-import { sortSubs } from "../actions/sortSubs"
+import { countRecords } from "../actions/sortSubs"
 
 export const sheet: Flatfile.SheetConfig = {
   name: "Beep Beep, I'm a Sheet",
@@ -112,5 +112,5 @@ export const sheet: Flatfile.SheetConfig = {
           alternativeNames: ["coapplicant age"],
       },       
   ],
-  actions: [sortSubs.blueprint as Flatfile.Action],
+  actions: [countRecords.blueprint as Flatfile.Action]
 }
