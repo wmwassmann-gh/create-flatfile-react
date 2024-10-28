@@ -3,6 +3,7 @@ import {
   useFlatfile,
   usePlugin,
   useEvent,
+  useListener,
   Workbook,
   Space,
   Document,
@@ -40,7 +41,23 @@ const SpaceConfig = () => {
       }
   };
 
+  useListener((listener) => {
+    listener.on("**", (event) => {
+      console.log("SpaceApp useListener Event => ", {
+        topic: event.topic,
+        payload: event.payload,
+      });
+    });
+  });
 
+  useListener((listener) => {
+    listener.on("job:ready", { job: "sheet:count-sub-records" }, (event) => {
+      console.log("I DID IT", {
+        topic: event.topic,
+        payload: event.payload,
+      })
+    })
+  })
  
 
   usePlugin(

@@ -13,6 +13,8 @@ export const WorkbookApp = ({ publishableKey }: { publishableKey: string }) => {
 const WorkbookConfig = () => {
   const { open, openPortal, closePortal } = useFlatfile();
 
+  
+
   return (
     <div className="content">
       {/*Button to trigger the modal */}

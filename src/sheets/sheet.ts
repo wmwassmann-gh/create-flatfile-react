@@ -1,5 +1,4 @@
 import { Flatfile } from "@flatfile/api";
-import { countRecords } from "../actions/sortSubs"
 
 export const sheet: Flatfile.SheetConfig = {
   name: "Beep Beep, I'm a Sheet",
@@ -112,5 +111,13 @@ export const sheet: Flatfile.SheetConfig = {
           alternativeNames: ["coapplicant age"],
       },       
   ],
-  actions: [countRecords.blueprint as Flatfile.Action]
+    actions: [
+    {
+      operation: 'count-sub-records',
+      mode: "foreground",
+      label: 'Count Subscribers',
+      description: 'Are you sure you want to run this action?',
+      tooltip: 'Click to run action'      
+    }
+  ]
 }
