@@ -51,14 +51,37 @@ const SpaceConfig = () => {
   });
 
   useListener((listener) => {
+    let subscriberCount = 0;
+    
     listener.on("job:ready", { job: "sheet:count-sub-records" }, (event) => {
-      console.log("I DID IT", {
-        topic: event.topic,
-        payload: event.payload,
+
+        const { sheetId, jobId, workbookId } = event.context;
+        console.log("Job ready for counting subscribers", {
+            topic: event.topic,
+            payload: event.payload,        
+        });
+
+        console.log(sheetId, workbookId, jobId);
+    });
+    
+    listener.use(
+        recordHook("sheet", (record) => {           
+        // Count subscriber keys
+       
+        // for (let i = 0; i < recordlength;  )
+        if (record.get("Subscribed") === true) {
+          subscriberCount++;
+        }
+  
+        return record;
       })
-    })
-  })
- 
+    );
+   // After processing all records, log the subscriber count
+   listener.on("sheet:records:processed", () => {
+    console.log(`Total number of subscribers: ${subscriberCount}`);
+  });
+});
+
 
   usePlugin(
       recordHook("sheet", (record, event) => {
