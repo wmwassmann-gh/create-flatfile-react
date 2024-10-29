@@ -10,7 +10,7 @@ import {
   Sheet,
   FlatfileProvider,
 } from "@flatfile/react";
-//import api from "@flatfile/api";
+import api from "@flatfile/api";
 import { useState } from "react";
 import { recordHook } from "@flatfile/plugin-record-hook";
 import { sheet } from "./sheets/sheet";
@@ -53,15 +53,39 @@ const SpaceConfig = () => {
   useListener((listener) => {
     let subscriberCount = 0;
     
-    listener.on("job:ready", { job: "sheet:count-sub-records" }, (event) => {
+    listener.on("job:ready", { job: "sheet:count-sub-records" }, async (event) => {
 
-        const { sheetId, jobId, workbookId } = event.context;
-        console.log("Job ready for counting subscribers", {
-            topic: event.topic,
-            payload: event.payload,        
-        });
+        
+        try {
+            const { sheetId } = event.context;
+            console.log("Job ready for counting subscribers", {
+                topic: event.topic,
+                payload: event.payload,        
+            });
+            
+            const {
+                data: { records },
+            } = await api.records.get(sheetId);
+            const {
+                data: { counts },
+            } = await api.sheets.getRecordCounts(sheetId);
+            console.log(records + " HELLO THIS ONE " + counts);
 
-        console.log(sheetId, workbookId, jobId);
+
+            for (const record of records) {
+                console.log(record)
+                if (record.values.fieldKey.value === "Subscribed") {
+                    if (record.values.reqReview.value === true) {
+                        console.log("Hello")
+                    }
+                }
+            }
+
+
+        } catch (error) {
+            console.log("ERROR FRIENDS " + error)
+        }
+
     });
     
     listener.use(
